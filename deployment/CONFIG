@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# COIN SPECS
+export COIN_NAME=coin
+export COIN_SYMBOL=COIN
+export COIN_DAEMON=coind
+export WALLET_DAEMON=simplewallet
+
+# these are usually defined in `src/CryptoNoteConfig.h` file in coin's source code
+export CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX=0x0123
+export CRYPTONOTE_DISPLAY_DECIMAL_POINT=100000000
+export DIFFICULTY_TARGET=90
+export CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW=15
+export MINIMUM_FEE=3000000
+
+
+# POOL VARIABLES
+export POOL_NAME="Your pool name"
+export POOL_HOSTNAME=pool.mining.com
+export POOL_API_URL=http://pool.mining.com/api
+
+export POOL_DIR=$HOME/pool
+export POOL_DB_DIR=$HOME/pool_db
+export POOL_UI_DIR=$HOME/pool_ui
+
+export DB_HOSTNAME=127.0.0.1
+export DB_NAME=
+export DB_USER=
+export DB_PASS=
+
+export POOL_ADDRESS=
+export FEE_ADDRESS=
+export COIN_DAEMON_PORT=
+export COIN_WDAEMON_PORT=
+export TX_FEE=
+export MAILGUN_KEY=
+export MAILGUN_URL=
+export EMAIL_FROM=
+export ADMIN_EMAIL=
+export COIN_MIXIN=
+
+export COIN_DEV_ADDRESS=COIN_DEV_ADDRESS
+export POOL_DEV_ADDRESS=POOL_DEV_ADDRESS

@@ -1,0 +1,16 @@
+[Unit]
+Description=Coin Daemon
+After=network.target
+After=systemd-user-sessions.service
+After=network-online.target
+
+[Service]
+User=CURUSER
+ExecStart=/usr/local/bin/COIN_DAEMON  --non-interactive --log-file HOME/COIN_DAEMON.log
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=350
+StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target

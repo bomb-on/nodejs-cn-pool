@@ -82,3 +82,5 @@ lib/coins/*
 !lib/coins/coin.js
 lib/payment_systems/*
 !lib/payment_systems/coin.js
+
+deployment/configs*

@@ -1,0 +1,17 @@
+[Unit]
+Description=Wallet Daemon
+After=network.target
+After=systemd-user-sessions.service
+After=network-online.target
+After=coind.service
+
+[Service]
+User=CURUSER
+ExecStart=/usr/local/bin/WALLET_DAEMON --wallet-file=POOL_DIR/pool --password-file=POOL_DIR/pool.pass --log-file HOME/WALLET_DAEMON.log --disable-rpc-login --trusted-daemon --rpc-bind-port=COIN_WALLET_DAEMON_PORT
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=350
+StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target
