@@ -75,3 +75,10 @@ jspm_packages
 .yarn-integrity
 
 config.json
+
+.editorconfig
+
+lib/coins/*
+!lib/coins/coin.js
+lib/payment_systems/*
+!lib/payment_systems/coin.js
