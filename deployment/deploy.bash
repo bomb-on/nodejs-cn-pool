@@ -56,7 +56,12 @@ printf '[client]\nuser=root\npassword=%s' "$ROOT_SQL_PASS" | sudo tee /root/.my.
 
 sudo DEBIAN_FRONTEND=noninteractive apt -y install \
     git python-virtualenv python3-virtualenv curl ntp build-essential cmake pkg-config mysql-server jq moreutils htop \
-    libboost-all-dev libssl-dev libevent-dev libunbound-dev libminiupnpc-dev libunwind8-dev liblzma-dev libldns-dev libexpat1-dev libgtest-dev lmdb-utils libzmq3-dev
+    libboost-all-dev libssl-dev libevent-dev libunbound-dev libminiupnpc-dev libunwind8-dev liblzma-dev libldns-dev libexpat1-dev libgtest-dev lmdb-utils libzmq3-dev \
+    gcc-5 g++-5 gcc-6 g++-6 gcc-7 g++-7
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 
 # SETUP COIN
 # bash coin.bash
@@ -96,7 +101,7 @@ jq -n --arg hostname "$POOL_HOSTNAME" \
       --arg db "$DB_NAME" \
       --arg dbuser "$DB_USER" \
       --arg dbpass "$DB_PASS" \
-'{"pool_id": 0, "bind_ip": 0.0.0.0, "hostname": $hostname, "db_storage_path": $dbdir, "coin": $coin, "mysql": { "connectionLimit": 20, "host": $dbhost, "database": $db, "user": $dbuser, "password": $dbpass}}' > "$POOL_DIR"/config.json
+'{"pool_id": 0, "bind_ip": "0.0.0.0", "hostname": $hostname, "db_storage_path": $dbdir, "coin": $coin, "mysql": { "connectionLimit": 20, "host": $dbhost, "database": $db, "user": $dbuser, "password": $dbpass}}' > "$POOL_DIR"/config.json
 
 jq -n --arg coin "${COIN_SYMBOL,,}" \
       --arg func_file "./lib/coins/${COIN_SYMBOL,,}.js" \
@@ -108,8 +113,7 @@ jq -n --arg coin "${COIN_SYMBOL,,}" \
 '{($coin): {"funcFile": $func_file, "paymentFile": $payment_file, "sigDigits": $sig_digits, "name": $coin_name, "mixIn": $mixin, "shortCode": $short_code}}' > "$POOL_DIR"/coinConfig.json
 
 # SETUP POOL UI
-git clone https://github.com/Bathmat/poolui-forknote.git "$POOL_UI_DIR"
-read -p "Press any key to continue... " -n1 -s
+git clone https://github.com/bomb-on/pool_ui.git "$POOL_UI_DIR"
 # shellcheck disable=SC2164
 cd "$POOL_UI_DIR"
 npm install

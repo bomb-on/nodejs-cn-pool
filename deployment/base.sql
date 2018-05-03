@@ -184,7 +184,7 @@ INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALU
 INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('daemon', 'address', '127.0.0.1', 'string', 'Coin Daemon RPC IP');
 INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('daemon', 'port', 'COIN_DAEMON_PORT', 'int', 'Coin Daemon RPC Port');
 INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('wallet', 'address', '127.0.0.1', 'string', 'Coin Daemon RPC Wallet IP');
-INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('wallet', 'port', 'COIN_WALLET_DAEMON_PORT', 'int', 'Coin Daemon RPC Wallet Port');
+INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('wallet', 'port', 'COIN_WDAEMON_PORT', 'int', 'Coin Daemon RPC Wallet Port');
 INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('rpc', 'https', 'false', 'bool', 'Enable RPC over SSL');
 INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('pool', 'maxDifficulty', '500000', 'int', 'Maximum difficulty for VarDiff');
 INSERT INTO DB_NAME.config (module, item, item_value, item_type, Item_desc) VALUES ('pool', 'minDifficulty', '1000', 'int', 'Minimum difficulty for VarDiff');
