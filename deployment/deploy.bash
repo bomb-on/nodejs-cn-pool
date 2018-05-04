@@ -57,14 +57,16 @@ printf '[client]\nuser=root\npassword=%s' "$ROOT_SQL_PASS" | sudo tee /root/.my.
 sudo DEBIAN_FRONTEND=noninteractive apt -y install \
     git python-virtualenv python3-virtualenv curl ntp build-essential cmake pkg-config mysql-server jq moreutils htop \
     libboost-all-dev libssl-dev libevent-dev libunbound-dev libminiupnpc-dev libunwind8-dev liblzma-dev libldns-dev libexpat1-dev libgtest-dev lmdb-utils libzmq3-dev \
-    gcc-5 g++-5 gcc-6 g++-6 gcc-7 g++-7
+    python2.7
+sudo ln -s /usr/bin/python2.7 /usr/bin/python
 
+sudo DEBIAN_FRONTEND=noninteractive apt -y install gcc-5 g++-5 gcc-6 g++-6 gcc-7 g++-7
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 
 # SETUP COIN
-# bash coin.bash
+bash coin.bash
 
 # REGISTER COIN DAEMON AS A SYSTEM SERVICE
 sed -r "s/CURUSER/$CURUSER/g; s/COIN_DAEMON/$COIN_DAEMON/g; s#HOME#$HOME#g;" "$POOL_DIR"/deployment/coind.service | sudo tee /etc/systemd/system/coind.service
